@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -58,6 +59,16 @@ public class Payment  {
 
     }
 
+    @PostLoad
+    public void makeDelay(){
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static PaymentRepository repository(){
         PaymentRepository paymentRepository = PaymentApplication.applicationContext.getBean(PaymentRepository.class);
         return paymentRepository;
@@ -72,25 +83,11 @@ public class Payment  {
 
 
     public static void cancelPayment(CustomerOrderCanceled customerOrderCanceled){
-
-        /** Example 1:  new item 
-        Payment payment = new Payment();
-        repository().save(payment);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(customerOrderCanceled.get???()).ifPresent(payment->{
+        repository().findByOrderId(customerOrderCanceled.getOrderId()).ifPresent(payment->{
             
-            payment // do something
+            payment.setStatus("PaymentCanceled");
             repository().save(payment);
-
-
          });
-        */
-
-        
     }
     public static void cancelPayment(OrderCanceled orderCanceled){
 
