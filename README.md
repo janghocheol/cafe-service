@@ -109,5 +109,8 @@
   ### 12. Loggregation
   EFK Stack으로 배포된 마이크로 서비스에 대한 통합 로깅
   
+  ![image](https://user-images.githubusercontent.com/117131418/209936133-9aebe28a-413a-4485-84a1-988812083b11.png)
+
+  
   
 
