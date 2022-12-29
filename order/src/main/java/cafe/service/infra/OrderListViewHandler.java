@@ -153,7 +153,7 @@ public class OrderListViewHandler {
             if( orderListOptional.isPresent()) {
                  OrderList orderList = orderListOptional.get();
             // view 객체에 이벤트의 eventDirectValue 를 set 함
-                orderList.setStatus("paid");    
+                orderList.setStatus("Paid");    
                 // view 레파지 토리에 save
                  orderListRepository.save(orderList);
                 }
