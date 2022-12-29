@@ -10,7 +10,6 @@ import lombok.*;
 @ToString
 public class CustomerOrderCanceled extends AbstractEvent {
 
-    private Long id;
     private Long orderId;
     private Long customerId;
     private Long cafeId;

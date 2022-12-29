@@ -10,7 +10,6 @@ import lombok.*;
 @ToString
 public class Paid extends AbstractEvent {
 
-    private Long id;
     private Long paymentId;
     private Long customerId;
     private Long cafeId;

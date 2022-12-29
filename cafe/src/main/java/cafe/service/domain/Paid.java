@@ -8,7 +8,6 @@ import java.util.*;
 @ToString
 public class Paid extends AbstractEvent {
 
-    private Long id;
     private Long paymentId;
     private Long customerId;
     private Long cafeId;

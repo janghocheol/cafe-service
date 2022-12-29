@@ -11,7 +11,6 @@ import lombok.ToString;
 @ToString
 public class OrderPlaced extends AbstractEvent {
 
-    private Long id;
     private Long orderId;
     private Long customerId;
     private Long cafeId;
