@@ -11,13 +11,13 @@
 * * *
 ## Event Storming 결과
 
-  모델 완성
+> 모델 완성
 ![image](https://user-images.githubusercontent.com/15317158/209916428-b615afe8-a3c0-4016-b934-a3f0b832d13d.png)
 
 * * *
 ## 구현
   ### 1. Saga (Pub-Sub) / 3. Correlation
-Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 처리인지를 구별하기 위한 Correlation-key 구현을 이벤트 클래스 안의 변수로 전달받아 서비스간 연관된 처리를 정확하게 구현하고 있습니다.
+    Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 처리인지를 구별하기 위한 Correlation-key 구현을 이벤트 클래스 안의 변수로 전달받아 서비스간 연관된 처리를 정확하게 구현하고 있습니다.
 
 아래의 구현 예제를 보면
 
@@ -47,9 +47,10 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
     JWT 인증
 
   ### 7. Deploy / Pipeline
-    Public 주소로 접속
+1. docker image 생성 및 push
+<img width="647" alt="image" src="https://user-images.githubusercontent.com/117134765/209923107-34ac1d90-9169-40d6-bc3b-3756e257ba47.png">
 
-    CI/CD 로 적용
+
   ### 8. Autoscale (HPA)
 1. cpu 할당 : cafe:200m, order:300m, payment:500m
 <img width="357" alt="image" src="https://user-images.githubusercontent.com/117134765/209917249-664ca4c9-51fa-4784-8d06-bec82aaae579.png">
