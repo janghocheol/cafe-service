@@ -106,7 +106,8 @@
       
    ![image](https://user-images.githubusercontent.com/117131418/209911538-9be624d4-4345-4a1d-96bd-148b8d8c0fe0.png)
       
-  ### 12. Loggregation / Monitoring
+  ### 12. Loggregation
+  EFK Stack으로 배포된 마이크로 서비스에 대한 통합 로깅
   
   
 
