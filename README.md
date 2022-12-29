@@ -45,7 +45,9 @@
     CI/CD 로 적용
   ### 8. Autoscale (HPA)
 1. cpu 할당 : cafe:200m, order:300m, payment:500m
-<img width="357" alt="image" src="https://user-images.githubusercontent.com/117134765/209917249-664ca4c9-51fa-4784-8d06-bec82aaae579.png">
+<img width="481" alt="image" src="https://user-images.githubusercontent.com/117134765/209919232-ca66e49e-e254-4b5b-a5fd-e43ab7c40075.png">
+<img width="469" alt="image" src="https://user-images.githubusercontent.com/117134765/209919464-2279dad2-2211-4d4d-a246-c58de91f2a56.png">
+<img width="481" alt="image" src="https://user-images.githubusercontent.com/117134765/209919408-2b7374bd-62c7-4368-aa40-fe3b92ea1999.png">
 
 2. cafe/order/payment 각각 cpu 사용률 20/30/50% 초과 시, replica 2개까지 생성한다
 <img width="504" alt="image" src="https://user-images.githubusercontent.com/117134765/209918735-0eeb9b81-4225-4b66-9806-6d6584ef9c47.png">
