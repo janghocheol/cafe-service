@@ -16,18 +16,25 @@
 
 * * *
 ## 구현
-  ### 1. Saga (Pub-Sub)
-    장애간섭최소화
+  ### 1. Saga (Pub-Sub) / 3. Correlation
+    Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 처리인지를 구별하기 위한 Correlation-key 구현을 이벤트 클래스 안의 변수로 전달받아 서비스간 연관된 처리를 정확하게 구현하고 있습니다.
+
+아래의 구현 예제를 보면
+
+주문(Order)을 하면 동시에 연관된 결제(Payment) 서비스를 동기호출하면 외부 시스템인 PG(데모로 구현한)에서 전달받은 승인코드등 결제(Payment)서비스에서 상태가 적당하게 변경되고, 또 카페(Cafe) 서비스의 Aggregation에 pub/sub하여 주문 데이터가 적절하게 상호작용하고 있음을 알 수 있습니다. 이 때 Correlation-key인 orderId 속성을 연계되는 각 이벤트 클래스에 정의하여 예약취소나 커피생산시작 등의 명령에 유기적으로 상태를 변화시키고 있음을 알 수 있습니다.
+
+
+
+**예제 삽입 필요**
+
 
     Loosely coupled architecture
   ### 2. CQRS
-    읽기 데이터 분리
+- 주문(Order)의 Initial/OrderPlaced/Paid/PaymentCanceled/OrderApproved 등 총 9개 Status 를 포함한 주문 상세 정보를 고객(Customer)이 조회 할 수 있도록 OrderList를 CQRS 로 구현하였다.
+- 주문(Order),결제(Payment),카페(Cafe) 서비스의 개별 Aggregate Status 를 통합 조회하여 성능 Issue 를 사전에 예방할 수 있다.
+- 비동기식으로 처리되어 발행된 이벤트 기반 Kafka 를 통해 수신/처리 되어 별도 Table 에 관리한다
 
-    두개 이상의 다른 마이크로서비스의 데이터를 Projection(Join)하는 대시보드
-  ### 3. Compensation / Correlation
-    복구/취소
-
-    해당 취소 건에 대한 필터링
+    
   ### 4. Request-Response
     값을 참고(GET)
 
@@ -44,13 +51,6 @@
 
     CI/CD 로 적용
   ### 8. Autoscale (HPA)
-1. cpu 할당 : cafe:200m, order:300m, payment:500m
-<img width="481" alt="image" src="https://user-images.githubusercontent.com/117134765/209919232-ca66e49e-e254-4b5b-a5fd-e43ab7c40075.png">
-<img width="469" alt="image" src="https://user-images.githubusercontent.com/117134765/209919464-2279dad2-2211-4d4d-a246-c58de91f2a56.png">
-<img width="481" alt="image" src="https://user-images.githubusercontent.com/117134765/209919408-2b7374bd-62c7-4368-aa40-fe3b92ea1999.png">
-
-2. cafe/order/payment 각각 cpu 사용률 20/30/50% 초과 시, replica 2개까지 생성한다
-<img width="504" alt="image" src="https://user-images.githubusercontent.com/117134765/209918735-0eeb9b81-4225-4b66-9806-6d6584ef9c47.png">
 
   ### 9. Zero-downtime deploy (Readiness probe)
 
