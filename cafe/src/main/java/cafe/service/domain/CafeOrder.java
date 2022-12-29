@@ -39,19 +39,6 @@ public class CafeOrder {
 
     @PostPersist
     public void onPostPersist() {
-
-        MakeStarted makeStarted = new MakeStarted(this);
-        makeStarted.publishAfterCommit();
-
-        OrderApproved orderApproved = new OrderApproved(this);
-        orderApproved.publishAfterCommit();
-
-        MakeCompleted makeCompleted = new MakeCompleted(this);
-        makeCompleted.publishAfterCommit();
-
-        OrderCanceled orderCanceled = new OrderCanceled(this);
-        orderCanceled.publishAfterCommit();
-
     }
 
     public static CafeOrderRepository repository() {
@@ -59,50 +46,47 @@ public class CafeOrder {
         return cafeOrderRepository;
     }
 
-    public static void addToCafeOrder(Paid paid) {
+    public void makeStart() {
+        setStatus("MakeStarted");
+        MakeStarted makeStarted = new MakeStarted(this);
+        makeStarted.publishAfterCommit();
+    }
 
-        /** Example 1: new item **/
+    public void makeComplete() {
+        setStatus("MakeCompleted");
+        MakeCompleted makeCompleted = new MakeCompleted(this);
+        makeCompleted.publishAfterCommit();
+    }
+
+    public void orderApprove() {
+        setStatus("OrderApproved");
+        OrderApproved orderApproved = new OrderApproved(this);
+        orderApproved.publishAfterCommit();
+    }
+
+    public void orderCancel() {
+        setStatus("OrderCanceled");
+        OrderCanceled orderCanceled = new OrderCanceled(this);
+        orderCanceled.publishAfterCommit();
+    }
+
+    public static void addToCafeOrder(Paid paid) {
         CafeOrder cafeOrder = new CafeOrder();
         cafeOrder.setCustomerId(paid.getCustomerId());
         cafeOrder.setCafeId(paid.getCafeId());
         cafeOrder.setMenuId(paid.getMenuId());
         cafeOrder.setQty(paid.getQty());
         cafeOrder.setOrderDate(paid.getOrderDate());
-        cafeOrder.setStatus("paid");
+        cafeOrder.setStatus("Paid");
         cafeOrder.setOrderId(paid.getOrderId());
         cafeOrder.repository().save(cafeOrder);
-
-        /**
-         * Example 2: finding and process
-         * 
-         * repository().findById(paid.get???()).ifPresent(cafeOrder->{
-         * 
-         * cafeOrder // do something
-         * repository().save(cafeOrder);
-         * 
-         * 
-         * });
-         */
-
     }
 
     public static void changeCafeOrder(PaymentCanceled paymentCanceled) {
-
-        /**
-         * Example 1: new item
-         * CafeOrder cafeOrder = new CafeOrder();
-         * repository().save(cafeOrder);
-         * 
-         */
-
-        /**
-         * Example 2: finding and process
-         */
         repository().findById(paymentCanceled.getOrderId()).ifPresent(cafeOrder -> {
             cafeOrder.setStatus("paymentCanceled"); // do something
             repository().save(cafeOrder);
         });
-
     }
 
 }
