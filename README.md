@@ -99,6 +99,7 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 - 비동기식으로 처리되어 발행된 이벤트 기반 Kafka 를 통해 수신/처리 되어 별도 Table 에 관리한다
 
 - Table 모델링 (OrderList)
+
 ![image](https://user-images.githubusercontent.com/15317158/210027667-446db092-b9bb-439e-a896-fefe31fdc114.png)
 
 viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/OrderCanceled/Paid/PaymentCanceled 등 주문 상태 변화에 따른 이벤트 발생 시, Pub/Sub 기반으로 별도 OrderList 테이블에 저장)
