@@ -78,12 +78,12 @@ api:
     payment: payment:8080
 
 
-feign:
-  hystrix:
-    enabled: true
+# feign:
+#   hystrix:
+#     enabled: true
 
-hystrix:
-  command:
-    # 전역설정
-    default:
-      execution.isolation.thread.timeoutInMilliseconds: 510
+# hystrix:
+#   command:
+#     # 전역설정
+#     default:
+#       execution.isolation.thread.timeoutInMilliseconds: 510
