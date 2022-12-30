@@ -93,6 +93,7 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 - Kafka 메세지 로그
   ![image](https://user-images.githubusercontent.com/15317158/210029170-f719a4c6-2d7f-42f4-af50-2a7541ebe87e.png)
 
+
 ## 2. CQRS
 - 주문(Order)의 Initial/OrderPlaced/Paid/PaymentCanceled/OrderApproved 등 총 9개 Status 를 포함한 주문 상세 정보를 고객(Customer)이 조회 할 수 있도록 OrderList를 CQRS 로 구현하였다.
 - 주문(Order),결제(Payment),카페(Cafe) 서비스의 개별 Aggregate Status 를 통합 조회하여 성능 Issue 를 사전에 예방할 수 있다.
@@ -133,6 +134,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
    
   - 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리를 아래에서 설명)
 
+
 ## 5. Circuit Breaker
  - 카페 시스템은  Spring FeignClient + Hystrix 옵션을 사용하여 구현하였습니다. 
   
@@ -146,7 +148,8 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
     -> 결제 서비스의 딜레이에 따라서 성공과 실패가 발생함을 확인할 수 있다. 
    - step4. 최종 부하 테스트 결과 : 총 36개의 트렌젠션을 발생시켜  25개 성공, 11개 Availability(69.44%)임을 확인 할 수 있다. 
      ![image](https://user-images.githubusercontent.com/117251976/210034888-25339a3f-2cb2-4ed8-8a42-1f43529d3569.png)
-  
+
+
 ## 6. GateWay
 - gateway 스프링부트 App을 추가 후 application.yaml내에 각 마이크로 서비스의 routes 를 추가하고 gateway 서버의 포트를 8080 으로 설정함
   - ![image](https://user-images.githubusercontent.com/117251976/210036746-a5dea04a-2cd9-48b6-ae19-defeb6bcead2.png)
@@ -245,6 +248,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 ![image](https://user-images.githubusercontent.com/15317158/210038716-a11e67fd-3706-4e4f-a479-fd5a21d2cfcd.png)
 
 ![image](https://user-images.githubusercontent.com/15317158/210038763-25215db2-7244-415a-b772-83fd7be1950c.png)
+
 
  ## 12. Loggregation
   EFK Stack으로 배포된 마이크로 서비스에 대한 통합 로깅
