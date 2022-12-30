@@ -66,7 +66,7 @@
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209918735-0eeb9b81-4225-4b66-9806-6d6584ef9c47.png">
 
 3. 부하 테스트용 pod 생성 및 수행
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/117134765/210025051-4c69433a-190e-4bea-85cf-3d05aa6362e1.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/117134765/210025051-4c69433a-190e-4bea-85cf-3d05aa6362e1.png">
 
 4. 해당 서비스 사용률 및 pod 증가 확인
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209922356-fb7c6cd6-f96b-4ecc-994a-4f39751facf1.png">
