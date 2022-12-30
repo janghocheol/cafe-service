@@ -120,12 +120,16 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
   ![image](https://user-images.githubusercontent.com/117251976/210033642-e18254f3-594f-4f5a-9905-8e7fe2b9e2a5.png)
   
 - 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인
+
   step1. payment 서비스를 종료시킨다
    ![image](https://user-images.githubusercontent.com/117251976/210033798-a861054a-3fb3-43a3-ab8a-223016566d16.png)
+   
   step2. 주문처리를 실행한다. -> 실패
    ![image](https://user-images.githubusercontent.com/117251976/210033879-085a4726-bb23-41f8-ab60-851e37824029.png)
+   
   step3. payment 서비스를 다시 시킨 후 주문시 정상 처리됨
    ![image](https://user-images.githubusercontent.com/117251976/210034212-7ad9029b-b488-4e57-bb97-c83ba0a28c94.png)
+   
   - 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리를 아래에서 설명)
 
 ## 5. Circuit Breaker
