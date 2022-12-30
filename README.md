@@ -119,11 +119,11 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
   
 - 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인
   - step1. payment 서비스를 종료시킨다
-  ![image](https://user-images.githubusercontent.com/117251976/210033798-a861054a-3fb3-43a3-ab8a-223016566d16.png)
+   - ![image](https://user-images.githubusercontent.com/117251976/210033798-a861054a-3fb3-43a3-ab8a-223016566d16.png)
   - step2. 주문처리를 실행한다. -> 실패
-  ![image](https://user-images.githubusercontent.com/117251976/210033879-085a4726-bb23-41f8-ab60-851e37824029.png)
-  - step3. payment 서비스를 다시 시킨 후 주문시 정상 처리됨
-  ![image](https://user-images.githubusercontent.com/117251976/210034212-7ad9029b-b488-4e57-bb97-c83ba0a28c94.png)
+   - ![image](https://user-images.githubusercontent.com/117251976/210033879-085a4726-bb23-41f8-ab60-851e37824029.png)
+  - step3. payment 서비스를 다시 시킨 후 주문시 정상 처리됨 
+   - ![image](https://user-images.githubusercontent.com/117251976/210034212-7ad9029b-b488-4e57-bb97-c83ba0a28c94.png)
    -> 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리를 아래에서 설명)
   
 ## 5. Circuit Breaker
@@ -131,7 +131,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
   
  - 시나리오는 주문(order)->결제(payment)시의 연결을 RESTful Request/Response 로 연동하여 구현이 되어있고, 결제 요청이 과도할 경우 CB 를 통하여 장애격리.
    - step1. Hystrix 를 설정: 요청처리 쓰레드에서 처리시간이 1010 밀리가 넘어서기 시작하여 어느정도 유지되면 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
-    ![image](https://user-images.githubusercontent.com/117251976/210034665-39909a51-a9c8-4bc7-a1bd-e254ef031ded.png)
+    - ![image](https://user-images.githubusercontent.com/117251976/210034665-39909a51-a9c8-4bc7-a1bd-e254ef031ded.png)
    - step2. 피호출 서비스(결제:payment) 의 임의 부하 처리 - 400 밀리 + 증감 220 밀리 정도
     ![image](https://user-images.githubusercontent.com/117251976/210034725-296e67ee-04ad-40f1-ac5a-03f0ad135e50.png)
    - step3. 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인(동시 접속자 2명, 20초간 실행
@@ -151,6 +151,8 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
   - ![image](https://user-images.githubusercontent.com/117251976/210037019-688b1687-bbb5-4768-bdc1-f1f0e1001b86.png)
 - Service 및 API gateway  확인
   - ![image](https://user-images.githubusercontent.com/117251976/210037087-a5fa26f1-a138-49ca-a332-31d0d4d87b97.png)
+- gateway를 통해서 서비스가 정상 조회 됨을 확인한다. 
+- ![image](https://user-images.githubusercontent.com/117251976/210037258-e98ac348-4df0-422c-94a9-49f9aa274d30.png)
 
 
 ## 7. Deploy / Pipeline
