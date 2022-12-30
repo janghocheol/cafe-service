@@ -76,7 +76,7 @@
   <img width="400" alt="image" src="https://user-images.githubusercontent.com/117134765/210025329-82811e45-a4d8-48cb-afa9-88bede92e482.png">
   
   2. 부하 발생 후, 무정지 서비스 로그 확인
-  <img width="600" alt="image" src="https://user-images.githubusercontent.com/117134765/210025426-71000908-d656-4320-971a-04e9be53e82d.png">
+  <img width="800" alt="image" src="https://user-images.githubusercontent.com/117134765/210025426-71000908-d656-4320-971a-04e9be53e82d.png">
 
   ### 10. Persistence Volume
   1. EFS 생성
