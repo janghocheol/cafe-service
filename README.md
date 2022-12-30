@@ -92,9 +92,9 @@
    
    ![image](https://user-images.githubusercontent.com/117131418/209910812-03ddc627-accf-4ba3-b88e-ba1ce918562f.png)
   
-  5. PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml  -> 여기까지 진행, PVC 상태 Pending 지속
+  5. PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml
    
-   ![image](https://user-images.githubusercontent.com/117131418/209910889-a4f54560-8f3e-4ae4-bbe9-16467f871a0f.png)
+   ![image](https://user-images.githubusercontent.com/117131418/210026183-5f2ae8d3-6112-4cba-8892-ae3914a0a5d1.png)
   
   6. order pod 적용
    
