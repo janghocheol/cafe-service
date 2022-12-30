@@ -122,6 +122,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 - 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인
 
   step1. payment 서비스를 종료시킨다
+  
    ![image](https://user-images.githubusercontent.com/117251976/210033798-a861054a-3fb3-43a3-ab8a-223016566d16.png)
    
   step2. 주문처리를 실행한다. -> 실패
