@@ -119,17 +119,27 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
   
 - 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인
   step1. payment 서비스를 종료시킨다
-   ![image](https://user-images.githubusercontent.com/117251976/210033798-a861054a-3fb3-43a3-ab8a-223016566d16.png)
+  ![image](https://user-images.githubusercontent.com/117251976/210033798-a861054a-3fb3-43a3-ab8a-223016566d16.png)
   step2. 주문처리를 실행한다. -> 실패
-   ![image](https://user-images.githubusercontent.com/117251976/210033879-085a4726-bb23-41f8-ab60-851e37824029.png)
+  ![image](https://user-images.githubusercontent.com/117251976/210033879-085a4726-bb23-41f8-ab60-851e37824029.png)
   step3. payment 서비스를 다시 시킨 후 주문시 정상 처리됨
-   ![image](https://user-images.githubusercontent.com/117251976/210034212-7ad9029b-b488-4e57-bb97-c83ba0a28c94.png)
+  ![image](https://user-images.githubusercontent.com/117251976/210034212-7ad9029b-b488-4e57-bb97-c83ba0a28c94.png)
   - 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리를 아래에서 설명)
-
+  
 ## 5. Circuit Breaker
-    Istio 를 사용 경우 (Timeout)
-
-    스프링클라우드 - Hystrix
+ - 카페 시스템은  Spring FeignClient + Hystrix 옵션을 사용하여 구현하였습니다. 
+  
+ - 시나리오는 주문(order)->결제(payment)시의 연결을 RESTful Request/Response 로 연동하여 구현이 되어있고, 결제 요청이 과도할 경우 CB 를 통하여 장애격리.
+   step1. Hystrix 를 설정: 요청처리 쓰레드에서 처리시간이 1010 밀리가 넘어서기 시작하여 어느정도 유지되면 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
+    ![image](https://user-images.githubusercontent.com/117251976/210034665-39909a51-a9c8-4bc7-a1bd-e254ef031ded.png)
+   step2. 피호출 서비스(결제:payment) 의 임의 부하 처리 - 400 밀리 + 증감 220 밀리 정도
+    ![image](https://user-images.githubusercontent.com/117251976/210034725-296e67ee-04ad-40f1-ac5a-03f0ad135e50.png)
+   step3. 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인(동시 접속자 2명, 20초간 실행
+    ![image](https://user-images.githubusercontent.com/117251976/210034792-83e1df1e-394b-4c71-9cf5-af66ea8f2b91.png)
+    -> 결제 서비스의 딜레이에 따라서 성공과 실패가 발생함을 확인할 수 있다. 
+    step4. 최종 부하 테스트 결과 : 총 36개의 트렌젠션을 발생시켜  25개 성공, 11개 Availability(69.44%)임을 확인 할 수 있다. 
+     ![image](https://user-images.githubusercontent.com/117251976/210034888-25339a3f-2cb2-4ed8-8a42-1f43529d3569.png)
+  
 ## 6. GateWay / Ingress
     JWT 인증
 
