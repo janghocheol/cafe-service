@@ -103,14 +103,16 @@
 
 
   7. A pod에서 마운트된 경로에 파일을 생성하고 B pod에서 파일을 확인함
+  
    A Pod에서 파일 생성
+   
    ![image](https://user-images.githubusercontent.com/117131418/210026034-ff807ad5-fb22-437c-9973-f54ecbbdf8ef.png)   
    ![image](https://user-images.githubusercontent.com/117131418/210026067-238824fd-1767-49e2-a854-a47de436c6a8.png)
+   
    B pod에서 파일 확인
+   
    ![image](https://user-images.githubusercontent.com/117131418/210026087-9ae48f11-ea79-4f29-ab54-0f594fb9d1d1.png)
    ![image](https://user-images.githubusercontent.com/117131418/210026098-efddfac2-6724-4d96-9846-d15f4e6ed5ba.png)
-
-
 
 
   ### 11. Self-healing (liveness probe)
