@@ -222,6 +222,9 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
   
   ![image](https://user-images.githubusercontent.com/117131418/210034710-4747f0e1-f41a-42a1-b717-b21970a24f32.png)
 
+
+http://a0aab2b85e26f4a3992b73ddd8747d76-417132811.ca-central-1.elb.amazonaws.com:5601/
+
   ![image](https://user-images.githubusercontent.com/117131418/210034699-37144c2d-110b-4e91-aa37-caa9fc170e68.png)
 
   
