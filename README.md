@@ -109,10 +109,10 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 
     
 ## 4. Request-Response
-카페 시스템은 주문(order) -> 결제(payment)간의 호출을 동기식으로 구현하여 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다.
+카페 시스템은 주문(order) -> 결제(payment)간의 호출을 동기식으로 구현하여 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다
     
 - 결제서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현    
-  ![image](https://user-images.githubusercontent.com/117251976/210033542-0a6547ab-a4c8-43c0-8217-5eccdf4d6192.png)
+ - ![image](https://user-images.githubusercontent.com/117251976/210033542-0a6547ab-a4c8-43c0-8217-5eccdf4d6192.png)
     
 - 주문을 받은 직후(@PostPersist) 결제를 요청하도록 처리   
   ![image](https://user-images.githubusercontent.com/117251976/210033642-e18254f3-594f-4f5a-9905-8e7fe2b9e2a5.png)
