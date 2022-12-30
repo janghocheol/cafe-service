@@ -48,10 +48,10 @@
 
   ### 7. Deploy / Pipeline
 1. docker image 생성 및 push
-<img width="647" alt="image" src="https://user-images.githubusercontent.com/117134765/209923107-34ac1d90-9169-40d6-bc3b-3756e257ba47.png">
+<img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209923107-34ac1d90-9169-40d6-bc3b-3756e257ba47.png">
 
 2. gateway 확인
-<img width="950" alt="image" src="https://user-images.githubusercontent.com/117134765/210023626-ab2501b1-7e8e-4aba-a77d-1aaa1aeb164e.png">
+<img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/210023626-ab2501b1-7e8e-4aba-a77d-1aaa1aeb164e.png">
 
 3. 주문 확인
 <img width="1060" alt="image" src="https://user-images.githubusercontent.com/117134765/210024236-d1ebf6cc-b38d-4255-8dd4-73f3f2bd6ee4.png">
