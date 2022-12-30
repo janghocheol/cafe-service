@@ -93,7 +93,7 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 - Kafka 메세지 로그
   ![image](https://user-images.githubusercontent.com/15317158/210029170-f719a4c6-2d7f-42f4-af50-2a7541ebe87e.png)
 
-  ### 2. CQRS
+  ## 2. CQRS
 - 주문(Order)의 Initial/OrderPlaced/Paid/PaymentCanceled/OrderApproved 등 총 9개 Status 를 포함한 주문 상세 정보를 고객(Customer)이 조회 할 수 있도록 OrderList를 CQRS 로 구현하였다.
 - 주문(Order),결제(Payment),카페(Cafe) 서비스의 개별 Aggregate Status 를 통합 조회하여 성능 Issue 를 사전에 예방할 수 있다.
 - 비동기식으로 처리되어 발행된 이벤트 기반 Kafka 를 통해 수신/처리 되어 별도 Table 에 관리한다
@@ -106,18 +106,18 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 ![image](https://user-images.githubusercontent.com/15317158/210028164-709788a3-d762-49f5-ad49-e4dfff03ada9.png)
 
     
-  ### 4. Request-Response
+  ## 4. Request-Response
     값을 참고(GET)
 
     order -> 주문이력을 조회
-  ### 5. Circuit Breaker
+  ## 5. Circuit Breaker
     Istio 를 사용 경우 (Timeout)
 
     스프링클라우드 - Hystrix
-  ### 6. GateWay / Ingress
+  ## 6. GateWay / Ingress
     JWT 인증
 
-  ### 7. Deploy / Pipeline
+  ## 7. Deploy / Pipeline
 1. docker image 생성 및 push
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209923107-34ac1d90-9169-40d6-bc3b-3756e257ba47.png">
 
@@ -129,7 +129,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/210024287-e25264cf-e78c-4c0c-990f-10cdde0e9ee3.png">
 
 
-  ### 8. Autoscale (HPA)
+  ## 8. Autoscale (HPA)
 1. cpu 할당 : cafe:200m, order:300m, payment:500m
 ![image](https://user-images.githubusercontent.com/117134765/210024507-31f25c77-94e0-4e9a-a38d-4b8ecc2fbed7.png)
 
@@ -143,7 +143,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209922356-fb7c6cd6-f96b-4ecc-994a-4f39751facf1.png">
 
 
-  ### 9. Zero-downtime deploy (Readiness probe)
+  ## 9. Zero-downtime deploy (Readiness probe)
   1. Zerodowntime deployment.yaml 설정
   <img width="400" alt="image" src="https://user-images.githubusercontent.com/117134765/210025329-82811e45-a4d8-48cb-afa9-88bede92e482.png">
   
@@ -152,7 +152,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
   
   
 
-  ### 10. Persistence Volume
+  ## 10. Persistence Volume
   1. EFS 생성
   
    ![image](https://user-images.githubusercontent.com/117131418/209910291-f4870d6f-f96a-485b-882f-5ae6a088ddf6.png)
@@ -186,7 +186,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
    ![image](https://user-images.githubusercontent.com/117131418/210026098-efddfac2-6724-4d96-9846-d15f4e6ed5ba.png)
 
 
-  ### 11. Self-healing (liveness probe)
+  ## 11. Self-healing (liveness probe)
   1. order deployment.yml 파일 수정
     컨테이너 실행 후 /tmp/healthy 파일을 만들고 
     90초 후 삭제
@@ -201,7 +201,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
       
    ![image](https://user-images.githubusercontent.com/117131418/209911538-9be624d4-4345-4a1d-96bd-148b8d8c0fe0.png)
       
-  ### 12. Loggregation
+  ## 12. Loggregation
   EFK Stack으로 배포된 마이크로 서비스에 대한 통합 로깅
   
   ![image](https://user-images.githubusercontent.com/117131418/209936133-9aebe28a-413a-4485-84a1-988812083b11.png)
