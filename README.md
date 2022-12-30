@@ -207,7 +207,9 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
  ## 12. Loggregation
   EFK Stack으로 배포된 마이크로 서비스에 대한 통합 로깅
   
-  ![image](https://user-images.githubusercontent.com/117131418/209936133-9aebe28a-413a-4485-84a1-988812083b11.png)
+  ![image](https://user-images.githubusercontent.com/117131418/210034710-4747f0e1-f41a-42a1-b717-b21970a24f32.png)
+
+  ![image](https://user-images.githubusercontent.com/117131418/210034699-37144c2d-110b-4e91-aa37-caa9fc170e68.png)
 
   
   
