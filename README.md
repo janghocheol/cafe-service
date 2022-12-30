@@ -72,7 +72,11 @@
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209922356-fb7c6cd6-f96b-4ecc-994a-4f39751facf1.png">
 
   ### 9. Zero-downtime deploy (Readiness probe)
-  미구현
+  1. Zerodowntime deployment.yaml 설정
+  <img width="600" alt="image" src="https://user-images.githubusercontent.com/117134765/210025329-82811e45-a4d8-48cb-afa9-88bede92e482.png">
+  
+  2. 부하 발생 후, 무정지 서비스 로그 확인
+  <img width="600" alt="image" src="https://user-images.githubusercontent.com/117134765/210025329-82811e45-a4d8-48cb-afa9-88bede92e482.png">
 
   ### 10. Persistence Volume
   1. EFS 생성
