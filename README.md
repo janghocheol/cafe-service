@@ -61,20 +61,28 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 주문(Order)을 하면 동시에 연관된 결제(Payment) 서비스를 동기호출하면 외부 시스템인 PG(데모로 구현한)에서 전달받은 승인코드등 결제(Payment)서비스에서 상태가 적당하게 변경되고, 또 카페(Cafe) 서비스의 Aggregation에 pub/sub하여 주문 데이터가 적절하게 상호작용하고 있음을 알 수 있습니다. 이 때 Correlation-key인 orderId 속성을 연계되는 각 이벤트 클래스에 정의하여 예약취소나 커피생산시작 등의 명령에 유기적으로 상태를 변화시키고 있음을 알 수 있습니다.
 
 - 고객이 주문 Post 후 상태
+
 ![image](https://user-images.githubusercontent.com/15317158/210028743-567663a5-a0c3-40ba-abcf-517798af8c45.png)
 - 결재 동기 호출 후 상태
+
 ![image](https://user-images.githubusercontent.com/15317158/210028804-0d88468b-b444-4c79-87e4-feeefb24e49c.png)
 - CafeOrder 상태
+
 ![image](https://user-images.githubusercontent.com/15317158/210028846-92360cdc-39c9-45b4-930f-f2edf6664529.png)
 - Cafe서비스에서 주문 취소 후 상태
+
 ![image](https://user-images.githubusercontent.com/15317158/210028922-88000b03-fe87-4500-ba01-e96c7837f1e6.png)
 - CafeOrder 상태
+
 ![image](https://user-images.githubusercontent.com/15317158/210028953-40414162-f8a5-45c7-9679-69812616f54d.png)
 - Payment 상태 
+
 ![image](https://user-images.githubusercontent.com/15317158/210028986-ab0a241f-ca3e-4720-bda2-d19194b5d7b5.png)
 - OrderList 상태
+
 ![image](https://user-images.githubusercontent.com/15317158/210029022-3d67f984-6f83-4466-a947-c5717823f920.png)
--Kafka 메세지 로그
+- Kafka 메세지 로그
+
 ![image](https://user-images.githubusercontent.com/15317158/210029170-f719a4c6-2d7f-42f4-af50-2a7541ebe87e.png)
 
   ### 2. CQRS
@@ -83,10 +91,13 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 - 비동기식으로 처리되어 발행된 이벤트 기반 Kafka 를 통해 수신/처리 되어 별도 Table 에 관리한다
 
 - Table 모델링 (OrderList)
+
 ![image](https://user-images.githubusercontent.com/15317158/210027667-446db092-b9bb-439e-a896-fefe31fdc114.png)
-viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/OrderCanceled/Paid/PaymentCanceled 등 주문 상태 변화에 따른 이벤트 발생 시, Pub/Sub 기반으로 별도 OrderList 테이블에 저장)
+- viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/OrderCanceled/Paid/PaymentCanceled 등 주문 상태 변화에 따른 이벤트 발생 시, Pub/Sub 기반으로 별도 OrderList 테이블에 저장)
+
 ![image](https://user-images.githubusercontent.com/15317158/210028006-1e0bce8c-eade-4707-b216-73ac578303ac.png)
 - 실제로 OrderList에서 각 주문의 상태를 확인할 수 있다.
+
 ![image](https://user-images.githubusercontent.com/15317158/210028164-709788a3-d762-49f5-ad49-e4dfff03ada9.png)
 
     
