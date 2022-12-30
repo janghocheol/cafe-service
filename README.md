@@ -103,7 +103,9 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 ![image](https://user-images.githubusercontent.com/15317158/210027667-446db092-b9bb-439e-a896-fefe31fdc114.png)
 
 viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/OrderCanceled/Paid/PaymentCanceled 등 주문 상태 변화에 따른 이벤트 발생 시, Pub/Sub 기반으로 별도 OrderList 테이블에 저장)
+
 ![image](https://user-images.githubusercontent.com/15317158/210028006-1e0bce8c-eade-4707-b216-73ac578303ac.png)
+
 - 실제로 OrderList에서 각 주문의 상태를 확인할 수 있다.
 ![image](https://user-images.githubusercontent.com/15317158/210028164-709788a3-d762-49f5-ad49-e4dfff03ada9.png)
 
