@@ -53,6 +53,9 @@
 2. gateway 확인
 <img width="950" alt="image" src="https://user-images.githubusercontent.com/117134765/210023626-ab2501b1-7e8e-4aba-a77d-1aaa1aeb164e.png">
 
+3. 주문 확인
+<img width="1060" alt="image" src="https://user-images.githubusercontent.com/117134765/210024236-d1ebf6cc-b38d-4255-8dd4-73f3f2bd6ee4.png">
+<img width="822" alt="image" src="https://user-images.githubusercontent.com/117134765/210024287-e25264cf-e78c-4c0c-990f-10cdde0e9ee3.png">
 
 
   ### 8. Autoscale (HPA)
@@ -69,7 +72,7 @@
 <img width="455" alt="image" src="https://user-images.githubusercontent.com/117134765/209922356-fb7c6cd6-f96b-4ecc-994a-4f39751facf1.png">
 
   ### 9. Zero-downtime deploy (Readiness probe)
-  
+  미구현
 
   ### 10. Persistence Volume
   1. EFS 생성
@@ -82,9 +85,9 @@
    
    ![image](https://user-images.githubusercontent.com/117131418/209910812-03ddc627-accf-4ba3-b88e-ba1ce918562f.png)
   
-  5. PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml
+  5. PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml  -> 여기까지 진행, PVC 상태 Pending 지속
    
-   ![image](https://user-images.githubusercontent.com/117131418/210024288-22ea5bff-f42c-4805-a54d-b3d534d67407.png)
+   ![image](https://user-images.githubusercontent.com/117131418/209910889-a4f54560-8f3e-4ae4-bbe9-16467f871a0f.png)
   
   6. order pod 적용
   7. A pod에서 마운트된 경로에 파일을 생성하고 B pod에서 파일을 확인함(airbnb 예시)
