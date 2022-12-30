@@ -75,6 +75,15 @@ spring:
 
 api:
   url:
-    payment: localhost:8080
+    payment: payment:8080
 
 
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    # 전역설정
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 510

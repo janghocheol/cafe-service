@@ -16,10 +16,6 @@ spring:
           uri: http://localhost:8082
           predicates:
             - Path=/cafeOrders/**, 
-        - id: shop
-          uri: http://localhost:8083
-          predicates:
-            - Path=/menus/**, 
         - id: order
           uri: http://localhost:8084
           predicates:
@@ -55,10 +51,6 @@ spring:
           uri: http://cafe:8080
           predicates:
             - Path=/cafeOrders/**, 
-        - id: shop
-          uri: http://shop:8080
-          predicates:
-            - Path=/menus/**, 
         - id: order
           uri: http://order:8080
           predicates:

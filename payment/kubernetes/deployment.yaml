@@ -16,9 +16,12 @@ spec:
     spec:
       containers:
         - name: payment
-          image: username/payment:latest
+          image: kyungsu77777/payment:v2
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              cpu: "500m"
           readinessProbe:
             httpGet:
               path: '/actuator/health'
