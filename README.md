@@ -65,6 +65,7 @@
 <img width="455" alt="image" src="https://user-images.githubusercontent.com/117134765/209922356-fb7c6cd6-f96b-4ecc-994a-4f39751facf1.png">
 
   ### 9. Zero-downtime deploy (Readiness probe)
+  
 
   ### 10. Persistence Volume
   1. EFS 생성
