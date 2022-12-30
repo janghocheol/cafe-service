@@ -147,6 +147,7 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
     ![image](https://user-images.githubusercontent.com/117251976/210034792-83e1df1e-394b-4c71-9cf5-af66ea8f2b91.png)
     -> 결제 서비스의 딜레이에 따라서 성공과 실패가 발생함을 확인할 수 있다. 
    - step4. 최종 부하 테스트 결과 : 총 36개의 트렌젠션을 발생시켜  25개 성공, 11개 Availability(69.44%)임을 확인 할 수 있다. 
+   
      ![image](https://user-images.githubusercontent.com/117251976/210034888-25339a3f-2cb2-4ed8-8a42-1f43529d3569.png)
 
 
