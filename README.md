@@ -109,10 +109,24 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 
     
 ## 4. Request-Response
+    카페 시스템은 주문(order) -> 결제(payment)간의 호출을 동기식으로 구현하여 일관성을 유지하는 트랜잭션으로 처리하기로 하였다. 호출 프로토콜은 이미 앞서 Rest Repository 에 의해 노출되어있는 REST 서비스를 FeignClient 를 이용하여 호출하도록 한다.
     
-![image](https://user-images.githubusercontent.com/117251976/210033371-df6fbcbf-de52-4009-a2b1-9b39bd058a5b.png)
+- 결제서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현    
+  ![image](https://user-images.githubusercontent.com/117251976/210033542-0a6547ab-a4c8-43c0-8217-5eccdf4d6192.png)
     
-
+- 주문을 받은 직후(@PostPersist) 결제를 요청하도록 처리   
+  ![image](https://user-images.githubusercontent.com/117251976/210033642-e18254f3-594f-4f5a-9905-8e7fe2b9e2a5.png)
+  
+- 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인
+  step1. payment 서비스를 종료시킨다
+   ![image](https://user-images.githubusercontent.com/117251976/210033798-a861054a-3fb3-43a3-ab8a-223016566d16.png)
+  step2. 주문처리를 실행한다. -> 실패
+   ![image](https://user-images.githubusercontent.com/117251976/210033879-085a4726-bb23-41f8-ab60-851e37824029.png)
+  step3. payment 서비스를 다시 시킨 후 주문시 정상 처리됨
+   ![image](https://user-images.githubusercontent.com/117251976/210034212-7ad9029b-b488-4e57-bb97-c83ba0a28c94.png)
+  - 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리를 아래에서 설명)
+   
+   
 ## 5. Circuit Breaker
     Istio 를 사용 경우 (Timeout)
 
