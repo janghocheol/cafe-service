@@ -5,7 +5,7 @@ metadata:
   labels:
     app: order
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: order
@@ -22,6 +22,10 @@ spec:
           resources:
             requests:
               cpu: "300m"
+#          args:
+#            - /bin/sh
+#            - -C
+#            - touch /tmp/healthy; sleep 90; rm -rf /tmp/healthy; sleep 600
           readinessProbe:
             httpGet:
               path: '/actuator/health'
@@ -35,10 +39,18 @@ spec:
               path: '/actuator/health'
               port: 8080
 #            exec:
-#             command:
-#               - cat
-#               - /tmp/healthy
+#              command:
+#              - cat
+#              - /tmp/healthy
             initialDelaySeconds: 120
             timeoutSeconds: 2
             periodSeconds: 5
             failureThreshold: 5
+          volumeMounts:
+            - mountPath: "/mnt/data"
+              name: volume
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: aws-efs
+

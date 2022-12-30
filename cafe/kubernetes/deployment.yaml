@@ -38,3 +38,10 @@ spec:
             timeoutSeconds: 2
             periodSeconds: 5
             failureThreshold: 5
+          volumeMounts:
+            - mountPath: "/mnt/data"
+              name: volume
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: aws-efs

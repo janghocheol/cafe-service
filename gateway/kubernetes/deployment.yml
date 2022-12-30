@@ -19,3 +19,10 @@ spec:
           image: kyungsu77777/gateway:v2
           ports:
             - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/mnt/data"
+              name: volume
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: aws-efs

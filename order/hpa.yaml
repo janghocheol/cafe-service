@@ -1,0 +1,93 @@
+apiVersion: v1
+items:
+- apiVersion: autoscaling/v1
+  kind: HorizontalPodAutoscaler
+  metadata:
+    annotations:
+      autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2022-12-30T00:22:16Z","reason":"ReadyForNewScale","message":"recommended
+        size matches current size"},{"type":"ScalingActive","status":"True","lastTransitionTime":"2022-12-30T00:22:16Z","reason":"ValidMetricFound","message":"the
+        HPA was able to successfully calculate a replica count from cpu resource utilization
+        (percentage of request)"},{"type":"ScalingLimited","status":"False","lastTransitionTime":"2022-12-30T00:22:16Z","reason":"DesiredWithinRange","message":"the
+        desired count is within the acceptable range"}]'
+      autoscaling.alpha.kubernetes.io/current-metrics: '[{"type":"Resource","resource":{"name":"cpu","currentAverageUtilization":2,"currentAverageValue":"5m"}}]'
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"autoscaling/v1","kind":"HorizontalPodAutoscaler","metadata":{"annotations":{"autoscaling.alpha.kubernetes.io/conditions":"[{\"type\":\"AbleToScale\",\"status\":\"True\",\"lastTransitionTime\":\"2022-12-29T10:20:51Z\",\"reason\":\"ReadyForNewScale\",\"message\":\"recommended size matches current size\"},{\"type\":\"ScalingActive\",\"status\":\"True\",\"lastTransitionTime\":\"2022-12-29T10:22:06Z\",\"reason\":\"ValidMetricFound\",\"message\":\"the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)\"},{\"type\":\"ScalingLimited\",\"status\":\"False\",\"lastTransitionTime\":\"2022-12-29T06:36:05Z\",\"reason\":\"DesiredWithinRange\",\"message\":\"the desired count is within the acceptable range\"}]","autoscaling.alpha.kubernetes.io/current-metrics":"[{\"type\":\"Resource\",\"resource\":{\"name\":\"cpu\",\"currentAverageUtilization\":2,\"currentAverageValue\":\"6m\"}}]"},"creationTimestamp":"2022-12-29T06:21:48Z","name":"cafe","namespace":"default","resourceVersion":"330024","uid":"ceb4a46d-90b9-41cc-8de2-790a83cee38f"},"spec":{"maxReplicas":1,"minReplicas":1,"scaleTargetRef":{"apiVersion":"apps/v1","kind":"Deployment","name":"cafe"},"targetCPUUtilizationPercentage":20},"status":{"currentCPUUtilizationPercentage":2,"currentReplicas":1,"desiredReplicas":1,"lastScaleTime":"2022-12-29T12:55:33Z"}}
+    creationTimestamp: "2022-12-30T00:22:15Z"
+    name: cafe
+    namespace: default
+    resourceVersion: "338290"
+    uid: f8052ae9-fc4a-4e4f-86fd-52cb820a4f52
+  spec:
+    maxReplicas: 1
+    minReplicas: 1
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: cafe
+    targetCPUUtilizationPercentage: 20
+  status:
+    currentCPUUtilizationPercentage: 2
+    currentReplicas: 1
+    desiredReplicas: 1
+- apiVersion: autoscaling/v1
+  kind: HorizontalPodAutoscaler
+  metadata:
+    annotations:
+      autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2022-12-30T00:30:18Z","reason":"ReadyForNewScale","message":"recommended
+        size matches current size"},{"type":"ScalingActive","status":"True","lastTransitionTime":"2022-12-30T00:44:20Z","reason":"ValidMetricFound","message":"the
+        HPA was able to successfully calculate a replica count from cpu resource utilization
+        (percentage of request)"},{"type":"ScalingLimited","status":"False","lastTransitionTime":"2022-12-30T00:46:20Z","reason":"DesiredWithinRange","message":"the
+        desired count is within the acceptable range"}]'
+      autoscaling.alpha.kubernetes.io/current-metrics: '[{"type":"Resource","resource":{"name":"cpu","currentAverageUtilization":16,"currentAverageValue":"51m"}}]'
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"autoscaling/v1","kind":"HorizontalPodAutoscaler","metadata":{"annotations":{"autoscaling.alpha.kubernetes.io/conditions":"[{\"type\":\"AbleToScale\",\"status\":\"True\",\"lastTransitionTime\":\"2022-12-29T11:51:52Z\",\"reason\":\"ScaleDownStabilized\",\"message\":\"recent recommendations were higher than current one, applying the highest recent recommendation\"},{\"type\":\"ScalingActive\",\"status\":\"True\",\"lastTransitionTime\":\"2022-12-30T00:17:15Z\",\"reason\":\"ValidMetricFound\",\"message\":\"the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)\"},{\"type\":\"ScalingLimited\",\"status\":\"False\",\"lastTransitionTime\":\"2022-12-29T11:32:19Z\",\"reason\":\"DesiredWithinRange\",\"message\":\"the desired count is within the acceptable range\"}]","autoscaling.alpha.kubernetes.io/current-metrics":"[{\"type\":\"Resource\",\"resource\":{\"name\":\"cpu\",\"currentAverageUtilization\":4,\"currentAverageValue\":\"12m\"}}]"},"creationTimestamp":"2022-12-29T06:21:55Z","name":"order","namespace":"default","resourceVersion":"330076","uid":"74c72b9a-816a-4299-b5df-11df0248f1ec"},"spec":{"maxReplicas":1,"minReplicas":1,"scaleTargetRef":{"apiVersion":"apps/v1","kind":"Deployment","name":"order"},"targetCPUUtilizationPercentage":30},"status":{"currentCPUUtilizationPercentage":4,"currentReplicas":2,"desiredReplicas":2,"lastScaleTime":"2022-12-30T00:17:15Z"}}
+    creationTimestamp: "2022-12-30T00:22:15Z"
+    name: order
+    namespace: default
+    resourceVersion: "338288"
+    uid: 307f1f0d-be50-4fb8-a4ac-0824835518ec
+  spec:
+    maxReplicas: 1
+    minReplicas: 1
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: order
+    targetCPUUtilizationPercentage: 30
+  status:
+    currentCPUUtilizationPercentage: 16
+    currentReplicas: 1
+    desiredReplicas: 1
+    lastScaleTime: "2022-12-30T00:22:16Z"
+- apiVersion: autoscaling/v1
+  kind: HorizontalPodAutoscaler
+  metadata:
+    annotations:
+      autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2022-12-30T00:22:16Z","reason":"ReadyForNewScale","message":"recommended
+        size matches current size"},{"type":"ScalingActive","status":"True","lastTransitionTime":"2022-12-30T00:22:16Z","reason":"ValidMetricFound","message":"the
+        HPA was able to successfully calculate a replica count from cpu resource utilization
+        (percentage of request)"},{"type":"ScalingLimited","status":"False","lastTransitionTime":"2022-12-30T00:22:16Z","reason":"DesiredWithinRange","message":"the
+        desired count is within the acceptable range"}]'
+      autoscaling.alpha.kubernetes.io/current-metrics: '[{"type":"Resource","resource":{"name":"cpu","currentAverageUtilization":1,"currentAverageValue":"8m"}}]'
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"autoscaling/v1","kind":"HorizontalPodAutoscaler","metadata":{"annotations":{"autoscaling.alpha.kubernetes.io/conditions":"[{\"type\":\"AbleToScale\",\"status\":\"True\",\"lastTransitionTime\":\"2022-12-29T10:20:51Z\",\"reason\":\"ReadyForNewScale\",\"message\":\"recommended size matches current size\"},{\"type\":\"ScalingActive\",\"status\":\"True\",\"lastTransitionTime\":\"2022-12-29T10:21:36Z\",\"reason\":\"ValidMetricFound\",\"message\":\"the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)\"},{\"type\":\"ScalingLimited\",\"status\":\"False\",\"lastTransitionTime\":\"2022-12-29T10:26:37Z\",\"reason\":\"DesiredWithinRange\",\"message\":\"the desired count is within the acceptable range\"}]","autoscaling.alpha.kubernetes.io/current-metrics":"[{\"type\":\"Resource\",\"resource\":{\"name\":\"cpu\",\"currentAverageUtilization\":1,\"currentAverageValue\":\"6m\"}}]"},"creationTimestamp":"2022-12-29T06:21:59Z","name":"payment","namespace":"default","resourceVersion":"330023","uid":"64d1dd93-a743-4850-adab-0144533698aa"},"spec":{"maxReplicas":1,"minReplicas":1,"scaleTargetRef":{"apiVersion":"apps/v1","kind":"Deployment","name":"payment"},"targetCPUUtilizationPercentage":50},"status":{"currentCPUUtilizationPercentage":1,"currentReplicas":1,"desiredReplicas":1,"lastScaleTime":"2022-12-29T10:26:52Z"}}
+    creationTimestamp: "2022-12-30T00:22:16Z"
+    name: payment
+    namespace: default
+    resourceVersion: "338289"
+    uid: d95c718d-9012-41d0-b0bb-3147b61384db
+  spec:
+    maxReplicas: 1
+    minReplicas: 1
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: payment
+    targetCPUUtilizationPercentage: 50
+  status:
+    currentCPUUtilizationPercentage: 1
+    currentReplicas: 1
+    desiredReplicas: 1
+kind: List
+metadata:
+  resourceVersion: ""

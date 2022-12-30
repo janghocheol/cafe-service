@@ -47,6 +47,7 @@ api:
 server:
   port: 8084
 
+
 feign:
   hystrix:
     enabled: true
@@ -55,7 +56,8 @@ hystrix:
   command:
     # 전역설정
     default:
-      execution.isolation.thread.timeoutInMilliseconds: 1010
+      execution.isolation.thread.timeoutInMilliseconds: 1100
+
 ---
 
 spring:
@@ -95,4 +97,4 @@ api:
 #   command:
 #     # 전역설정
 #     default:
-#       execution.isolation.thread.timeoutInMilliseconds: 510
+#       execution.isolation.thread.timeoutInMilliseconds: 610
