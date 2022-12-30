@@ -93,7 +93,7 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 - Kafka 메세지 로그
   ![image](https://user-images.githubusercontent.com/15317158/210029170-f719a4c6-2d7f-42f4-af50-2a7541ebe87e.png)
 
-  ## 2. CQRS
+## 2. CQRS
 - 주문(Order)의 Initial/OrderPlaced/Paid/PaymentCanceled/OrderApproved 등 총 9개 Status 를 포함한 주문 상세 정보를 고객(Customer)이 조회 할 수 있도록 OrderList를 CQRS 로 구현하였다.
 - 주문(Order),결제(Payment),카페(Cafe) 서비스의 개별 Aggregate Status 를 통합 조회하여 성능 Issue 를 사전에 예방할 수 있다.
 - 비동기식으로 처리되어 발행된 이벤트 기반 Kafka 를 통해 수신/처리 되어 별도 Table 에 관리한다
@@ -106,74 +106,73 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 ![image](https://user-images.githubusercontent.com/15317158/210028164-709788a3-d762-49f5-ad49-e4dfff03ada9.png)
 
     
-  ## 4. Request-Response
+## 4. Request-Response
     값을 참고(GET)
 
     order -> 주문이력을 조회
-  ## 5. Circuit Breaker
+## 5. Circuit Breaker
     Istio 를 사용 경우 (Timeout)
 
     스프링클라우드 - Hystrix
-  ## 6. GateWay / Ingress
+## 6. GateWay / Ingress
     JWT 인증
 
-  ## 7. Deploy / Pipeline
-1. docker image 생성 및 push
+## 7. Deploy / Pipeline
+- docker image 생성 및 push
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209923107-34ac1d90-9169-40d6-bc3b-3756e257ba47.png">
 
-2. gateway 확인
+- gateway 확인
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/210023626-ab2501b1-7e8e-4aba-a77d-1aaa1aeb164e.png">
 
-3. 주문 확인
+- 주문 확인
 <img width="1060" alt="image" src="https://user-images.githubusercontent.com/117134765/210024236-d1ebf6cc-b38d-4255-8dd4-73f3f2bd6ee4.png">
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/210024287-e25264cf-e78c-4c0c-990f-10cdde0e9ee3.png">
 
 
-  ## 8. Autoscale (HPA)
-1. cpu 할당 : cafe:200m, order:300m, payment:500m
+## 8. Autoscale (HPA)
+- cpu 할당 : cafe: 200m,  order: 300m,  payment: 500m
 ![image](https://user-images.githubusercontent.com/117134765/210024507-31f25c77-94e0-4e9a-a38d-4b8ecc2fbed7.png)
 
-2. cafe/order/payment 각각 cpu 사용률 20/30/50% 초과 시, replica 2개까지 생성한다
+- cafe/order/payment 각각 cpu 사용률 20/30/50% 초과 시, replica 2개까지 생성한다
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209918735-0eeb9b81-4225-4b66-9806-6d6584ef9c47.png">
 
-3. 부하 테스트용 pod 생성 및 수행
+- 부하 테스트용 pod 생성 및 수행
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/117134765/210025051-4c69433a-190e-4bea-85cf-3d05aa6362e1.png">
 
-4. 해당 서비스 사용률 및 pod 증가 확인
+- 해당 서비스 사용률 및 pod 증가 확인
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/117134765/209922356-fb7c6cd6-f96b-4ecc-994a-4f39751facf1.png">
 
 
-  ## 9. Zero-downtime deploy (Readiness probe)
-  1. Zerodowntime deployment.yaml 설정
+## 9. Zero-downtime deploy (Readiness probe)
+- Zerodowntime deployment.yaml 설정
   <img width="400" alt="image" src="https://user-images.githubusercontent.com/117134765/210025329-82811e45-a4d8-48cb-afa9-88bede92e482.png">
   
-  2. 부하 발생 후, 무정지 서비스 로그 확인
+- 부하 발생 후, 무정지 서비스 로그 확인
   <img width="800" alt="image" src="https://user-images.githubusercontent.com/117134765/210025426-71000908-d656-4320-971a-04e9be53e82d.png">
   
   
-
-  ## 10. Persistence Volume
-  1. EFS 생성
+## 10. Persistence Volume
+- EFS 생성
   
    ![image](https://user-images.githubusercontent.com/117131418/209910291-f4870d6f-f96a-485b-882f-5ae6a088ddf6.png)
   
-  2. EFS 계정 생성 및 ROLE 바인딩 : efs-sa.yml, efs-rbac.yml
-  3. EFSS Provisioner 배포 : efs-provisioner.yml
-  4. 설치한 Provisioner를 storageclass에 등록 : efs-storageclass.yml
+- EFS 계정 생성 및 ROLE 바인딩 : efs-sa.yml, efs-rbac.yml
+- EFSS Provisioner 배포 : efs-provisioner.yml
+- 설치한 Provisioner를 storageclass에 등록 : efs-storageclass.yml
    
    ![image](https://user-images.githubusercontent.com/117131418/209910812-03ddc627-accf-4ba3-b88e-ba1ce918562f.png)
   
-  5. PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml
+- PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml
    
    ![image](https://user-images.githubusercontent.com/117131418/210026183-5f2ae8d3-6112-4cba-8892-ae3914a0a5d1.png)
   
-  6. order pod 적용
+ - order pod 적용
    
    ![image](https://user-images.githubusercontent.com/117131418/210025998-518ece50-302a-4c0e-99d8-b09fe549a3e0.png)
    ![image](https://user-images.githubusercontent.com/117131418/210026012-4509afa1-ece4-42aa-885f-3427eae96b52.png)
 
 
-  7. A pod에서 마운트된 경로에 파일을 생성하고 B pod에서 파일을 확인함
+  - A pod에서 마운트된 경로에 파일을 생성하고 B pod에서 파일을 확인함
   
    A Pod에서 파일 생성
    
@@ -186,22 +185,22 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
    ![image](https://user-images.githubusercontent.com/117131418/210026098-efddfac2-6724-4d96-9846-d15f4e6ed5ba.png)
 
 
-  ## 11. Self-healing (liveness probe)
-  1. order deployment.yml 파일 수정
+ ## 11. Self-healing (liveness probe)
+ - order deployment.yml 파일 수정
     컨테이너 실행 후 /tmp/healthy 파일을 만들고 
     90초 후 삭제
     livenessProbe에 'cat /tmp/healthy'으로 검증하도록 함
       
    ![image](https://user-images.githubusercontent.com/117131418/209911192-ddd4d65c-f80c-4217-9e05-a280359e9981.png)
      
-   2. kubectl describe pod order 실행으로 확인
+  - kubectl describe pod order 실행으로 확인
     컨테이너 실행 후 90초 동인은 정상이나 이후 /tmp/healthy 파일이 삭제되어 livenessProbe에서 실패를 리턴하게 됨
     pod 정상 상태 일때 pod 진입하여 /tmp/healthy 파일 생성해주면 정상 상태 유지됨
     >> 배포 후 테스트해서 캡쳐(아래는 airbnb 예시)
       
    ![image](https://user-images.githubusercontent.com/117131418/209911538-9be624d4-4345-4a1d-96bd-148b8d8c0fe0.png)
       
-  ## 12. Loggregation
+ ## 12. Loggregation
   EFK Stack으로 배포된 마이크로 서비스에 대한 통합 로깅
   
   ![image](https://user-images.githubusercontent.com/117131418/209936133-9aebe28a-413a-4485-84a1-988812083b11.png)
