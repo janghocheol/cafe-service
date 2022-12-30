@@ -74,7 +74,9 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
   ![image](https://user-images.githubusercontent.com/15317158/210028846-92360cdc-39c9-45b4-930f-f2edf6664529.png)
 
 - Cafe서비스에서 주문 취소 후 상태
+
   ![image](https://user-images.githubusercontent.com/15317158/210028922-88000b03-fe87-4500-ba01-e96c7837f1e6.png)
+
 
 - CafeOrder 상태
   ![image](https://user-images.githubusercontent.com/15317158/210028953-40414162-f8a5-45c7-9679-69812616f54d.png)
