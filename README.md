@@ -82,9 +82,9 @@
    
    ![image](https://user-images.githubusercontent.com/117131418/209910812-03ddc627-accf-4ba3-b88e-ba1ce918562f.png)
   
-  5. PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml  -> 여기까지 진행, PVC 상태 Pending 지속
+  5. PVC(PersistentVolumeClaim) 생성 : volume-pvc.yml
    
-   ![image](https://user-images.githubusercontent.com/117131418/209910889-a4f54560-8f3e-4ae4-bbe9-16467f871a0f.png)
+   ![image](https://user-images.githubusercontent.com/117131418/210024288-22ea5bff-f42c-4805-a54d-b3d534d67407.png)
   
   6. order pod 적용
   7. A pod에서 마운트된 경로에 파일을 생성하고 B pod에서 파일을 확인함(airbnb 예시)
