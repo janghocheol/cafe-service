@@ -109,9 +109,10 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 
     
 ## 4. Request-Response
-    값을 참고(GET)
+    
+![image](https://user-images.githubusercontent.com/117251976/210033371-df6fbcbf-de52-4009-a2b1-9b39bd058a5b.png)
+    
 
-    order -> 주문이력을 조회
 ## 5. Circuit Breaker
     Istio 를 사용 경우 (Timeout)
 
