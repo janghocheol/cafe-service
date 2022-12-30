@@ -81,8 +81,11 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 - CafeOrder 상태
   ![image](https://user-images.githubusercontent.com/15317158/210028953-40414162-f8a5-45c7-9679-69812616f54d.png)
 
-- Payment 상태 
+
+- Payment 상태
+ 
   ![image](https://user-images.githubusercontent.com/15317158/210028986-ab0a241f-ca3e-4720-bda2-d19194b5d7b5.png)
+
 
 - OrderList 상태
   ![image](https://user-images.githubusercontent.com/15317158/210029022-3d67f984-6f83-4466-a947-c5717823f920.png)
