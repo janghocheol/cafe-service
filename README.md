@@ -210,20 +210,20 @@ viewpage OrderListViewHandler.java 를 통해 구현 (OrderPlaced/OrderApproved/
 
 
  ## 11. Self-healing (liveness probe)
- - order deployment.yml 파일 수정
-    컨테이너 실행 후 /tmp/healthy 파일을 만들고 
-    90초 후 삭제
-    livenessProbe에 'cat /tmp/healthy'으로 검증하도록 함
-      
-   ![image](https://user-images.githubusercontent.com/117131418/209911192-ddd4d65c-f80c-4217-9e05-a280359e9981.png)
-     
-  - kubectl describe pod order 실행으로 확인
-    컨테이너 실행 후 90초 동인은 정상이나 이후 /tmp/healthy 파일이 삭제되어 livenessProbe에서 실패를 리턴하게 됨
-    pod 정상 상태 일때 pod 진입하여 /tmp/healthy 파일 생성해주면 정상 상태 유지됨
-    >> 배포 후 테스트해서 캡쳐(아래는 airbnb 예시)
-      
-   ![image](https://user-images.githubusercontent.com/117131418/209911538-9be624d4-4345-4a1d-96bd-148b8d8c0fe0.png)
-      
+ - order 서비스에 30번만 응답하고 31번째부터는 응답을 하지 않고 waiting 하는 함수 구현
+ 
+ ![image](https://user-images.githubusercontent.com/15317158/210038569-7871d5a3-2e41-47c0-9340-0401a72dab96.png)
+ 
+ - deploy yaml의 pod spec 에 livenessprobe 설정 추가
+
+![image](https://user-images.githubusercontent.com/15317158/210038632-0019cc51-467b-4fb2-a3a5-d024b4fee303.png)
+
+ - 31번 응답부터는 서비스가 응답하지 않아 pod이 다음과 같이 재시작함
+
+![image](https://user-images.githubusercontent.com/15317158/210038716-a11e67fd-3706-4e4f-a479-fd5a21d2cfcd.png)
+
+![image](https://user-images.githubusercontent.com/15317158/210038763-25215db2-7244-415a-b772-83fd7be1950c.png)
+
  ## 12. Loggregation
   EFK Stack으로 배포된 마이크로 서비스에 대한 통합 로깅
   
