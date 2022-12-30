@@ -62,18 +62,25 @@ Cafe 프로젝트에서는 PolicyHandler에서 처리 시 어떤 건에 대한 �
 
 - 고객이 주문 Post 후 상태
 ![image](https://user-images.githubusercontent.com/15317158/210028743-567663a5-a0c3-40ba-abcf-517798af8c45.png)
+
 - 결재 동기 호출 후 상태
 ![image](https://user-images.githubusercontent.com/15317158/210028804-0d88468b-b444-4c79-87e4-feeefb24e49c.png)
+
 - CafeOrder 상태
 ![image](https://user-images.githubusercontent.com/15317158/210028846-92360cdc-39c9-45b4-930f-f2edf6664529.png)
+
 - Cafe서비스에서 주문 취소 후 상태
 ![image](https://user-images.githubusercontent.com/15317158/210028922-88000b03-fe87-4500-ba01-e96c7837f1e6.png)
+
 - CafeOrder 상태
 ![image](https://user-images.githubusercontent.com/15317158/210028953-40414162-f8a5-45c7-9679-69812616f54d.png)
+
 - Payment 상태 
 ![image](https://user-images.githubusercontent.com/15317158/210028986-ab0a241f-ca3e-4720-bda2-d19194b5d7b5.png)
+
 - OrderList 상태
 ![image](https://user-images.githubusercontent.com/15317158/210029022-3d67f984-6f83-4466-a947-c5717823f920.png)
+
 -Kafka 메세지 로그
 ![image](https://user-images.githubusercontent.com/15317158/210029170-f719a4c6-2d7f-42f4-af50-2a7541ebe87e.png)
 
